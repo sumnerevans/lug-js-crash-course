@@ -1,8 +1,8 @@
-Title: "Git"
+Title: "JavaScript Crash Course"
 Description: >
-        A presentation covering a bunch of Git
-Date: 2016-09-22
-Thumbnail: git.png
+    A Crash Course on JavaScript
+Date: 2016-11-10
+Thumbnail: js.jpg
 Files:
-        SlidesPDF: git.pdf
-        LaTeX: git.tex
+        SlidesPDF: js-crash-course.pdf
+        LaTeX: js-crash-course.tex
