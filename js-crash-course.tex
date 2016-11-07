@@ -1,11 +1,13 @@
 \documentclass{lug}
 
 \usepackage{csquotes}
-\MakeOuterQuote{"}
 \usepackage{listings}
 
+\MakeOuterQuote{"}
+\setbeamerfont{footnote}{size=\Tiny}
+
 \title{JavaScript Crash Course}
-\author{Sumner Evans}
+\author{Jonathan Sumner Evans}
 
 \begin{document}
 
@@ -19,12 +21,12 @@
         \item Why \textbf{Java}Script? Because Java happened to be popular then (that was before
             people realized how awful it is) and JavaScript looks syntactically similar at a glance.
         \item JavaScript is standardized\footnotemark[2] by Ecma International and there have been a
-            number of ECMAScript versions. The latest is ECMAScript 6, but it is not supported by
-            most browsers, including Firefox which only has partial support.
+            number of ECMAScript versions. The latest is ECMAScript 6, but it is not fully supported
+            by any browsers, including Firefox which only has partial support.
     \end{itemize}
 
     \footnotetext[1]{Lots of this slide's information is from:
-    \href{https://www.w3.org/community/webed/wiki/A_Short_History_of_JavaScript}{w3.org/community/webed/wiki/A_Short_History_of_JavaScript}}
+    \url{https://www.w3.org/community/webed/wiki/A_Short_History_of_JavaScript}}
     \uncover<4>{\footnotetext[2]{JavaScript standards aren't actually that standard.}}
 \end{frame}
 
@@ -33,8 +35,7 @@
 
     \begin{itemize}
         \item \texttt{var name;} - creates variable \texttt{name} with value \texttt{undefined}.
-        \item \texttt{var name = `Sumner';} - creates variable \texttt{name} with value
-            \texttt{"Sumner"}.
+        \item \texttt{var name = `Sumner';} - you can initialize a variable when you declare it.
         \item Variables have types, but they can change.
     \end{itemize}
 
@@ -108,11 +109,11 @@
     \frametitle{Libraries}
 
     There are \textbf{lots} of JavaScript libraries. One of the most widely used is jQuery
-    (\href{http://jquery.com/}{jquery.com}). It has good documentation and is really good for DOM
+    (\url{http://jquery.com/}). It has good documentation and is really good for DOM
     manipulation.\\
 
     I also have a few nice prototype overloads in a repository at
-    \href{https://github.com/sumnerevans/js-utils}{github.com/sumnerevans/js-utils} (MIT License).
+    \url{https://github.com/sumnerevans/js-utils} (MIT License).
 
 \end{frame}
 
@@ -122,7 +123,7 @@
     The \textit{Document Object Model} is an API used by JavaScript to interact with the elements of
     an HTML document.\footnotemark[1]
 
-    \footnotetext[1]{\href{https://en.wikipedia.org/wiki/Document_Object_Model}{en.wikipedia.org/wiki/Document_Object_Model}}
+    \footnotetext[1]{\url{https://en.wikipedia.org/wiki/Document_Object_Model}}
 \end{frame}
 
 \begin{frame}
@@ -133,7 +134,7 @@
     more than writing a few simple scripts.\\
 
     MDN is the best resource for JavaScript documentation
-    (\href{https://developer.mozilla.org/en-US/}{developer.mozilla.org}).
+    (\url{https://developer.mozilla.org/en-US/}).
 \end{frame}
 
 \end{document}
