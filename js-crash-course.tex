@@ -23,17 +23,17 @@
             most browsers, including Firefox which only has partial support.
     \end{itemize}
 
-    \footnotetext[1]{Lots of this information is from:
-    \url{https://www.w3.org/community/webed/wiki/A_Short_History_of_JavaScript}}
+    \footnotetext[1]{Lots of this slide's information is from:
+    \href{https://www.w3.org/community/webed/wiki/A_Short_History_of_JavaScript}{w3.org/community/webed/wiki/A_Short_History_of_JavaScript}}
     \uncover<4>{\footnotetext[2]{JavaScript standards aren't actually that standard.}}
 \end{frame}
 
 \begin{frame}
-    \frametitle{JavaScript Syntax Overview: Variables}
+    \frametitle{Variables}
 
     \begin{itemize}
         \item \texttt{var name;} - creates variable \texttt{name} with value \texttt{undefined}.
-        \item \texttt{var name = 'Sumner';} - creates variable \texttt{name} with value
+        \item \texttt{var name = `Sumner';} - creates variable \texttt{name} with value
             \texttt{"Sumner"}.
         \item Variables have types, but they can change.
     \end{itemize}
@@ -46,6 +46,94 @@
 %            b = 4;
 %
 %    \end{listing}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Scope}
+
+    There are two scopes in JavaScript: global and function.\footnotemark[1]\\
+
+    Variables are \textit{hoisted} to the top of a function.
+
+    \footnotetext[1]{In ES6, variables declared with \texttt{let} are actually block scope.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Arrays}
+
+    JavaScript arrays are basically vectors.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Objects}
+
+    JavaScript objects are basically maps.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Functions}
+
+    Functions are just objects with two special properties: a context (scope) and the function code.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Functions: Closure}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Inheritance}
+    JavaScript is Pseudoclassical.
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Truthy, Falsy and \texttt{==} vs \texttt{===}}
+
+    JavaScript has the notion of being \textit{truthy} and \textit{falsy}.
+
+    JavaScript has two equality operators:
+    \begin{itemize}
+        \item \texttt{==} compares without checking variable type.
+        \item \texttt{===} compares and checks variable type.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Pitfalls}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Libraries}
+
+    There are \textbf{lots} of JavaScript libraries. One of the most widely used is jQuery
+    (\href{http://jquery.com/}{jquery.com}). It has good documentation and is really good for DOM
+    manipulation.\\
+
+    I also have a few nice prototype overloads in a repository at
+    \href{https://github.com/sumnerevans/js-utils}{github.com/sumnerevans/js-utils} (MIT License).
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{DOM Manipulation}
+
+    The \textit{Document Object Model} is an API used by JavaScript to interact with the elements of
+    an HTML document.\footnotemark[1]
+
+    \footnotetext[1]{\href{https://en.wikipedia.org/wiki/Document_Object_Model}{en.wikipedia.org/wiki/Document_Object_Model}}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Additional Resources}
+
+    A lot of this presentation was based off of \textit{JavaScript: The Good Parts} by Douglas
+    Crockford. This is an essential read for anyone interested in learning JavaScript for anything
+    more than writing a few simple scripts.\\
+
+    MDN is the best resource for JavaScript documentation
+    (\href{https://developer.mozilla.org/en-US/}{developer.mozilla.org}).
 \end{frame}
 
 \end{document}
