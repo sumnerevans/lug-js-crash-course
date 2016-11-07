@@ -1,0 +1,51 @@
+\documentclass{lug}
+
+\usepackage{csquotes}
+\MakeOuterQuote{"}
+\usepackage{listings}
+
+\title{JavaScript Crash Course}
+\author{Sumner Evans}
+
+\begin{document}
+
+\begin{frame}
+    \frametitle{JavaScript is \textbf{\textit{NOT}} Java \footnotemark[1]}
+
+    \begin{itemize}[<+->]
+        \item JavaScript was written was created in 10 days in May 1995 by Brendan Eich.
+        \item JavaScript was originally called Mocha and was renamed to LiveScript before being
+            renamed again to JavaScript.
+        \item Why \textbf{Java}Script? Because Java happened to be popular then (that was before
+            people realized how awful it is) and JavaScript looks syntactically similar at a glance.
+        \item JavaScript is standardized\footnotemark[2] by Ecma International and there have been a
+            number of ECMAScript versions. The latest is ECMAScript 6, but it is not supported by
+            most browsers, including Firefox which only has partial support.
+    \end{itemize}
+
+    \footnotetext[1]{Lots of this information is from:
+    \url{https://www.w3.org/community/webed/wiki/A_Short_History_of_JavaScript}}
+    \uncover<4>{\footnotetext[2]{JavaScript standards aren't actually that standard.}}
+\end{frame}
+
+\begin{frame}
+    \frametitle{JavaScript Syntax Overview: Variables}
+
+    \begin{itemize}
+        \item \texttt{var name;} - creates variable \texttt{name} with value \texttt{undefined}.
+        \item \texttt{var name = 'Sumner';} - creates variable \texttt{name} with value
+            \texttt{"Sumner"}.
+        \item Variables have types, but they can change.
+    \end{itemize}
+
+%    \begin{listing}
+%        var name;
+%        var age = 3;
+%        var gender = "male";
+%        var a = 3,
+%            b = 4;
+%
+%    \end{listing}
+\end{frame}
+
+\end{document}
