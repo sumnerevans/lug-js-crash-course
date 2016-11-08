@@ -5,6 +5,10 @@
 
 \MakeOuterQuote{"}
 \setbeamerfont{footnote}{size=\Tiny}
+\lstset{
+    basicstyle=\small,
+    breaklines=true
+}
 
 \title{JavaScript Crash Course}
 \author{Jonathan Sumner Evans}
@@ -33,36 +37,114 @@
 \begin{frame}
     \frametitle{Variables}
 
+    JavaScript is an \textbf{untyped} language. I don't know what that means and I don't
+    think that Brendan did either when he wrote the language.\\
+
+    Variables are declared using the \texttt{var} keyword\footnotemark[1]. \\
+
+    \textbf{Examples:}
+
     \begin{itemize}
-        \item \texttt{var name;} - creates variable \texttt{name} with value \texttt{undefined}.
+        \item \texttt{var name;} - creates variable \texttt{name} of type \texttt{undefined}.
         \item \texttt{var name = `Sumner';} - you can initialize a variable when you declare it.
-        \item Variables have types, but they can change.
     \end{itemize}
 
-%    \begin{listing}
-%        var name;
-%        var age = 3;
-%        var gender = "male";
-%        var a = 3,
-%            b = 4;
-%
-%    \end{listing}
+    \footnotetext[1]{Sometimes you don't need to use \texttt{var}.}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Scope}
+    \frametitle{Types\footnotemark[1]}
+
+    JavaScript has six primitive types:
+
+    \begin{itemize}
+        \item Boolean (\texttt{true} or \texttt{false})
+        \item Null
+        \item Undefined (yes, this is a type)
+        \item Number (can be a number between $-(2^{53} - 1)$ and $2^{53} - 1$, \texttt{NaN},
+            \texttt{-Infinity}, or \texttt{Infinity}).
+        \item String (single or double quotes declares a string literal\footnotemark[2])
+        \item Symbol (new in ECMAScript 6)
+    \end{itemize}
+
+    ~\\
+    Everything else is an object.
+
+    \footnotetext[1]{Info on this slide from:
+    \url{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures}}
+    \footnotetext[2]{Single quotes is recommended by Douglas Crockford because HTML normally uses
+        double quotes and to avoid conflicts when manipulating DOM objects, single quotes should be
+    used.}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Scope I}
 
     There are two scopes in JavaScript: global and function.\footnotemark[1]\\
 
-    Variables are \textit{hoisted} to the top of a function.
+    Variables are \textit{hoisted} to the top of the function they are declared in. Thus, the
+    following is entirely valid.
+
+    \begin{lstlisting}
+    function() {
+        b = 5;
+        console.log(b); // logs 5
+        var b = 3
+        console.log(b); // logs 3
+    }
+    \end{lstlisting}
+
+    Thus, it is recommended that you declare all of your variables at the top of your
+    functions (one exception to this rule is counter variables).
 
     \footnotetext[1]{In ES6, variables declared with \texttt{let} are actually block scope.}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
+    \frametitle{Scope II}
+
+    Variables declared outside of a function are automatically in the global scope.\\
+
+    Variables declared within a function \textit{without} the \texttt{var} keyword are also in the
+    global scope.
+
+    \begin{lstlisting}
+    var a = 2;
+    (function() {
+        b = 3
+    })(); // this creates and invokes the function immediately
+
+    console.log(a); // logs 2
+    console.log(b); // logs 3
+    \end{lstlisting}
+
+    Because your code could coexist with other people's code, on the same HTML page, it is
+    recommended that you reduce your \textit{global footprint} by creating only a few global objects
+    and then putting everything into that.
+\end{frame}
+
+\begin{frame}[fragile]
     \frametitle{Arrays}
 
-    JavaScript arrays are basically vectors.
+    JavaScript arrays are basically vectors.\\
+
+    \textbf{Example:}
+
+    \begin{lstlisting}
+    var arr = [1, 'a', {}, [], true];
+    arr[0] = 'not a number';
+    arr.push('this is basically a vector');
+    console.log(arr);
+    \end{lstlisting}
+
+    \textbf{Output:}
+
+    \begin{lstlisting}
+    [ 'not a number', 'a', {}, [], true, 'this is basically a vector' ]
+    \end{lstlisting}
+
+    \textit{Note that the elements of an array do not have to be the same type.}
+
 \end{frame}
 
 \begin{frame}
