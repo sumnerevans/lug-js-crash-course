@@ -40,7 +40,9 @@
 
     \begin{itemize}[<+->]
         \item Everything is either a primitive or an object.
-        \item Objects in JavaScript are mutable keyed collections.
+        \item Objects are ALWAYS passed by reference
+        \item Primitives are ALWAYS passed by value
+        \item Objects in JavaScript are mutable keyed collections/dictionaries.
         \item JavaScript is \textit{pseudoclassical}.
         \item JavaScript uses \textit{prototypes} for inheritance.
         \item There is no such thing as a \textit{class} in JavaScript.\footnotemark[1]
@@ -76,17 +78,14 @@
     \frametitle{Objects: Inheritance and the Prototype Chain}
 
     \begin{itemize}[<+->]
-        \item Every JavaScript object is linked to a \textit{prototype}. Objects inherit the
-            properties from their prototypes.
+        \item Every JavaScript object is linked to a \textit{prototype}. If a member is not found in an object (i.e. if \texttt{obj.foobar == undefined}) then the prototype is searched. It defines a sort of "default" set of values for the object.
 
-        \item "Empty" objects inherit from \texttt{Object.prototype} which is defined by the
-            JavaScript language.
+        \item "Empty" objects start with \texttt{Object.prototype} defined as their prototype.
 
         \item You can set the prototype of an object to another object (or to \texttt{undefined}) by calling
             \texttt{myObj.prototype = otherObj;}
 
-        \item Since the prototype of an object is just another object, it too can have a
-            prototype. Hence the prototype \textit{chain}.
+        \item Since the prototype of an object is just another object, it too can have a prototype. Hence the prototype \textit{chain}. When you access a property of an object, the whole prototype chain is searched for it.
 
         \item The prototype relationship is a dynamic relationship. If a property is added to the
             prototype, it is automatically visible to all objects based on that prototype.
@@ -329,10 +328,9 @@
         // do stuff
     }
 
-    for (var prop in obj) { // dont' use for arrays where order matters
-        if (obj.hasOwnProperty(prop)) { // required so you don't iterate over prototype
-            // process the stuff
-        }
+    for (var prop in obj) {
+        obj[prop].doThing(); // prop is the key
+                             // could be a number or a string
     }
     \end{minted}
 \end{frame}
