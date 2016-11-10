@@ -37,11 +37,13 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Objects}
+    \frametitle{Objects \& Primitives}
 
     \begin{itemize}[<+->]
         \item Everything is either a primitive or an object.
-        \item Objects in JavaScript are mutable keyed collections.
+        \item Objects are ALWAYS passed by reference
+        \item Primitives are ALWAYS passed by value
+        \item Objects in JavaScript are mutable keyed collections/dictionaries.
         \item JavaScript is \textit{pseudoclassical}.
         \item JavaScript uses \textit{prototypes} for inheritance.
         \item There is no such thing as a \textit{class} in JavaScript.\footnotemark[1]
@@ -52,25 +54,112 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{Primitives: Types\footnotemark[1]}
+
+    JavaScript has six primitive types:
+
+    \begin{itemize}
+        \item Boolean
+        \item Null
+        \item Undefined (yes, this is a type)
+        \item Number (can be a number between $-(2^{53} - 1)$ and $2^{53} - 1$, \texttt{NaN},
+            \texttt{-Infinity}, or \texttt{Infinity}).
+        \item String (single or double quotes declares a string literal\footnotemark[2])
+        \item Symbol (new in ECMAScript 6)
+    \end{itemize}
+
+    \footnotetext[1]{Info on this slide from:
+    \url{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures}}
+    \footnotetext[2]{Single quotes are recommended by Douglas Crockford because HTML normally uses
+        double quotes and to avoid conflicts when manipulating DOM objects, single quotes should be
+    used.}
+\end{frame}
+
+\begin{frame}
     \frametitle{Objects: Inheritance and the Prototype Chain}
 
     \begin{itemize}[<+->]
-        \item Every JavaScript object is linked to a \textit{prototype}. Objects inherit the
-            properties from their prototypes.
+        \item Every JavaScript object is linked to a \textit{prototype}. If a member is not found in an object (i.e. if \texttt{obj.foobar == undefined}) then the prototype is searched. It defines a sort of "default" set of values for the object.
 
-        \item Object literals inherit from \texttt{Object.prototype} which is defined by the
-            JavaScript language.
+        \item "Empty" objects start with \texttt{Object.prototype} defined as their prototype.
 
-        \item You can set the prototype of an object to another object by calling
+        \item You can set the prototype of an object to another object (or to \texttt{undefined}) by calling
             \texttt{myObj.prototype = otherObj;}
 
-        \item Since the prototype of an object is itself an object, the prototype will have a
-            prototype.
+        \item Since the prototype of an object is just another object, it too can have a prototype. Hence the prototype \textit{chain}. When you access a property of an object, the whole prototype chain is searched for it.
 
         \item The prototype relationship is a dynamic relationship. If a property is added to the
             prototype, it is automatically visible to all objects based on that prototype.
     \end{itemize}
 
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Objects: Syntax}
+
+    \begin{minted}{javascript}
+    var myObj = { // this is an object literal
+        a: 3,
+        'b': 'JavaScript',
+        'is-awesome?': true,
+        doSomething: function () {
+            console.log(this.a); // 3
+            console.log(a); // error
+        }, // trailing commas are allowed
+    };
+    myObj.doSomething();
+    console.log(myObj.b, myObj['is-awesome?']);
+    \end{minted}
+
+    \textbf{Output:}
+    \begin{minted}{text}
+    3
+    error: a is undefined
+    JavaScript true
+    \end{minted}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Objects: Arrays}
+
+    JavaScript arrays are basically vectors (and are also objects, remember?).
+
+    \begin{minted}{javascript}
+    var arr = [1, 'a', {}, [], true];
+    arr[0] = 'not a number';
+    arr.push('this is basically a vector');
+    console.log(arr);
+    \end{minted}
+
+    \textbf{Output:}
+    \begin{minted}{text}
+    [ 'not a number', 'a', {}, [], true, 'this is basically a vector' ]
+    \end{minted}
+
+    \textit{Note that the elements of an array do not have to be the same type.}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Variables}
+
+    JavaScript is an \textbf{untyped} language. I don't know what that means and I don't
+    think that Brendan did either when he wrote the language.\\
+
+    Variables are declared using the \texttt{var} keyword\footnotemark[1]. \\
+
+    \textbf{Examples:}
+
+    \begin{itemize}
+        \item \texttt{var name;} - creates variable \texttt{name} of type \texttt{undefined}.
+        \item \texttt{var name = `Sumner';} - string literal
+        \item \texttt{var age = 18;} - declaring a number literal
+        \item \texttt{var hasFriends = false;} - declaring a boolean
+        \item \texttt{var significantOther = null;}
+    \end{itemize}
+
+    \footnotetext[1]{Sometimes you don't need to use \texttt{var} as I have described above.}
 \end{frame}
 
 \begin{frame}
@@ -210,10 +299,9 @@
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{Functions: Closure}
+    \frametitle{Private Variables}
 
-    The fact that you can declare a function from within a function allows you to simulate private
-    variables.
+    You can simulate private variables the same way:
 
     \begin{minted}{javascript}
     var Dog = function(name) {
@@ -229,97 +317,6 @@
     console.log(myDog.name);    // logs 'Sebastian'
     console.log(myDog.isBoy()); // logs true
     \end{minted}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Syntax: Types\footnotemark[1]}
-
-    JavaScript has six primitive types:
-
-    \begin{itemize}
-        \item Boolean
-        \item Null
-        \item Undefined (yes, this is a type)
-        \item Number (can be a number between $-(2^{53} - 1)$ and $2^{53} - 1$, \texttt{NaN},
-            \texttt{-Infinity}, or \texttt{Infinity}). There is only one number type, a 64-bit
-            floating point number.
-        \item String (single or double quotes declares a string literal\footnotemark[2])
-        \item Symbol (new in ECMAScript 6)
-    \end{itemize}
-
-    \footnotetext[1]{Info on this slide from:
-    \url{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures}}
-    \footnotetext[2]{Single quotes are recommended by Douglas Crockford because HTML normally uses
-        double quotes and to avoid conflicts when manipulating DOM objects, single quotes should be
-    used.}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Syntax: Variables}
-
-    JavaScript is an \textbf{untyped} language. I don't know what that means and I don't
-    think that Brendan did either when he wrote the language.\\
-
-    Variables are declared using the \texttt{var} keyword\footnotemark[1]. \\
-
-    \textbf{Examples:}
-
-    \begin{itemize}
-        \item \texttt{var name;} - creates variable \texttt{name} of type \texttt{undefined}.
-        \item \texttt{var name = `Sumner';} - string literal
-        \item \texttt{var age = 18;} - declaring a number literal
-        \item \texttt{var hasFriends = false;} - declaring a boolean
-        \item \texttt{var significantOther = null;}
-    \end{itemize}
-
-    \footnotetext[1]{Sometimes you don't need to use \texttt{var} as I have described above.}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Syntax: Arrays}
-
-    JavaScript arrays are basically vectors.
-
-    \begin{minted}{javascript}
-    var arr = [1, 'a', {}, [], 4, true];
-    arr[0] = 'not a number';
-    arr.push('this is basically a vector');
-    console.log(arr);
-    \end{minted}
-
-    \textbf{Output:}
-    \begin{minted}{text}
-    [ 'not a number', 'a', {}, [], true, 'this is basically a vector' ]
-    \end{minted}
-
-    \textit{Note that the elements of an array do not have to be the same type.}
-
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Syntax: Objects}
-
-    \begin{minted}{javascript}
-    var myObj = { // this is an object literal
-        a: 3,
-        'b': 'JavaScript',
-        'is-awesome?': true,
-        doSomething: function () {
-            console.log(this.a); // 3
-            console.log(a); // error
-        }, // trailing commas are allowed
-    };
-    myObj.doSomething();
-    console.log(myObj.b, myObj['is-awesome?']);
-    \end{minted}
-
-    \textbf{Output:}
-    \begin{minted}{text}
-    3
-    error: a is undefined
-    JavaScript true
-    \end{minted}
-
 \end{frame}
 
 \begin{frame}[fragile]
@@ -339,11 +336,9 @@
         // for loop syntax is identical
     }
 
-    // iterated for loop
-    for (var prop in obj) { // don't use for arrays where order matters
-        if (obj.hasOwnProperty(prop)) { // don't iterate over prototype
-            // process the stuff
-        }
+    for (var prop in obj) {
+        obj[prop].doThing(); // prop is the key
+                             // could be a number or a string
     }
     \end{minted}
 \end{frame}
@@ -351,11 +346,11 @@
 \begin{frame}
     \frametitle{Pitfalls: Truthy, Falsy and \texttt{==} vs \texttt{===}}
 
-    JavaScript has the notion of being \textit{truthy} and \textit{falsy}.\\
-
-    The following values are always falsy: \texttt{false, 0, "", null, undefined, NaN}. \\
-
-    Do not expect all falsy values to be equal to each other (\texttt{false == null} is false). \\
+    JavaScript has the notion of being \textit{truthy} and \textit{falsy}.\\ 
+ 
+    The following values are always falsy: \texttt{false, 0, "", null, undefined, NaN}. \\ 
+ 
+    Do not expect all falsy values to be equal to each other (\texttt{false == null} is false). \\ 
 
     JavaScript has two equality operators:
     \begin{itemize}
