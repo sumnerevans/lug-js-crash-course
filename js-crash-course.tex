@@ -54,7 +54,7 @@
     \frametitle{Objects: Inheritance and the Prototype Chain}
 
     \begin{itemize}[<+->]
-        \item Every JavaScript object is liked to a \textit{prototype}. Objects inherit the
+        \item Every JavaScript object is linked to a \textit{prototype}. Objects inherit the
             properties from their prototypes.
 
         \item Object literals inherit from \texttt{Object.prototype} which is defined by the
@@ -82,11 +82,10 @@
             variables.
         \item Functions can access all arguments passed to a function via the \texttt{arguments}
             variable.
+        \item Functions can access the callee of a function (\texttt{callee.func()}) via the \texttt{this} variable.
         \item Functions can also have named parameters.
         \item Functions always return a value. If no return is explicitly specified, the function
-            will return undefined.
-        \item Functions invoked using the new command construct objects. The default return value is
-            \texttt{this}.
+            will return \texttt{undefined}.
     \end{itemize}
 \end{frame}
 
@@ -111,6 +110,31 @@
     \begin{minted}{text}
     in doStuff
     9
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Functions: New}
+    JavaScript functions can be invoked with the \texttt{new} keyword, mimicking traditional class-based languages:
+
+    \begin{minted}{javascript}
+    function Thing(val) {
+        this.v = val;
+    }
+
+    var t = new Thing(12);
+    console.log(t.v); // prints 12
+    \end{minted}
+
+    But don't be fooled. Really that is just equivalent to:
+
+    \begin{minted}{javascript}
+    ...
+
+    var t = {};
+    t.prototype = Thing.prototype;
+    t.Thing(12); // the important bit!
+    console.log(t.v); // prints 12
     \end{minted}
 \end{frame}
 
@@ -160,11 +184,18 @@
     \end{minted}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
     \frametitle{Global Abatement}
     Because your code could coexist with other people's code, on the same HTML page, it is
     recommended that you reduce your \textit{global footprint} by creating only a few global objects
-    and then putting all assets into that object.\\
+    and then putting all assets into that object.
+
+    \begin{minted}{javascript}
+    myGlobal = (function() {
+        var myInternalData = 10;
+        return {data: 5};
+    })();
+    \end{minted}
 
     Since you can add properties to objects at will, you can still split your code into multiple
     files.
@@ -174,7 +205,7 @@
     \frametitle{Functions: Closure}
 
     The fact that you can declare a function from within a function allows you to simulate private
-    variables.\\
+    variables.
 
     \begin{minted}{javascript}
     var Dog = function(name) {
