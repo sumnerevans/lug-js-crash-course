@@ -24,7 +24,8 @@
         \item JavaScript was originally called Mocha and was renamed to LiveScript before being
             renamed again to JavaScript.
         \item Why \textbf{Java}Script? Because Java happened to be popular then (that was before
-            people realized how awful it is) and JavaScript looks syntactically similar at a glance.
+            people realized how much Java sucks in a browser) and JavaScript looks syntactically
+            similar at a glance.
         \item JavaScript is standardized\footnotemark[2] by Ecma International and there have been a
             number of ECMAScript versions. The latest is ECMAScript 6, but it is not fully supported
             by any browsers, including Firefox which only has partial support.
@@ -54,7 +55,7 @@
     \frametitle{Objects: Inheritance and the Prototype Chain}
 
     \begin{itemize}[<+->]
-        \item Every JavaScript object is liked to a \textit{prototype}. Objects inherit the
+        \item Every JavaScript object is linked to a \textit{prototype}. Objects inherit the
             properties from their prototypes.
 
         \item Object literals inherit from \texttt{Object.prototype} which is defined by the
@@ -202,7 +203,8 @@
         \item Null
         \item Undefined (yes, this is a type)
         \item Number (can be a number between $-(2^{53} - 1)$ and $2^{53} - 1$, \texttt{NaN},
-            \texttt{-Infinity}, or \texttt{Infinity}).
+            \texttt{-Infinity}, or \texttt{Infinity}). There is only one number type, a 64-bit
+            floating point number.
         \item String (single or double quotes declares a string literal\footnotemark[2])
         \item Symbol (new in ECMAScript 6)
     \end{itemize}
@@ -241,7 +243,7 @@
     JavaScript arrays are basically vectors.
 
     \begin{minted}{javascript}
-    var arr = [1, 'a', {}, [], true];
+    var arr = [1, 'a', {}, [], 4, true];
     arr[0] = 'not a number';
     arr.push('this is basically a vector');
     console.log(arr);
@@ -255,7 +257,6 @@
     \textit{Note that the elements of an array do not have to be the same type.}
 
 \end{frame}
-
 
 \begin{frame}[fragile]
     \frametitle{Syntax: Objects}
@@ -287,36 +288,40 @@
     \frametitle{Syntax: Control Statements}
 
     \begin{minted}{javascript}
-    if (condition) { // if statements are just like
-                     // C++
+    // if statement syntax is identical to C++
+    if (condition) {
     } else if (condition) {
     } else {
     }
 
-    // ternary just like C++
-    a = condition ? val_if_true : val_if_false;
+    // ternary syntax is just like C++
+    var a = condition ? val_if_true : val_if_false;
 
     for (initializer; condition; incrementor) {
-        // do stuff
+        // for loop syntax is identical
     }
 
-    for (var prop in obj) { // dont' use for arrays where order matters
-        if (obj.hasOwnProperty(prop)) { // required so you don't iterate over prototype
+    // iterated for loop
+    for (var prop in obj) { // don't use for arrays where order matters
+        if (obj.hasOwnProperty(prop)) { // don't iterate over prototype
             // process the stuff
         }
     }
     \end{minted}
 \end{frame}
 
-
 \begin{frame}
     \frametitle{Pitfalls: Truthy, Falsy and \texttt{==} vs \texttt{===}}
 
-    JavaScript has the notion of being \textit{truthy} and \textit{falsy}.
+    JavaScript has the notion of being \textit{truthy} and \textit{falsy}.\\
+
+    The following values are always falsy: \texttt{false, 0, "", null, undefined, NaN}. \\
+
+    Do not expect all falsy values to be equal to each other (\texttt{false == null} is false). \\
 
     JavaScript has two equality operators:
     \begin{itemize}
-        \item \texttt{==} compares without checking variable type.
+        \item \texttt{==} compares without checking variable type. This will cast then compare.
         \item \texttt{===} compares and checks variable type.
     \end{itemize}
 \end{frame}

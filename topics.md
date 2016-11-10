@@ -20,8 +20,6 @@
 # Pitfalls
 - Truthy and Falsy
 - `===` vs `==`
-- parseInt must have base 10 specified
-- @SUMNER: Add more
 
 # Additional Resources
 - JavaScript: The Good Parts
