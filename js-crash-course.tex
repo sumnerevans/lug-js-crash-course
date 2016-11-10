@@ -116,7 +116,8 @@
 
 \begin{frame}[fragile]
     \frametitle{Functions: New}
-    JavaScript functions can be invoked with the \texttt{new} keyword, mimicking traditional class-based languages:
+    JavaScript functions can be invoked with the \texttt{new} keyword, mimicking traditional
+    class-based languages:
 
     \begin{minted}{javascript}
     function Thing(val) {
@@ -188,13 +189,19 @@
 \begin{frame}[fragile]
     \frametitle{Global Abatement}
     Because your code could coexist with other people's code, on the same HTML page, it is
-    recommended that you reduce your \textit{global footprint} by creating only a few global objects
+    recommended that you reduce your \textit{global footprint} by only creating a few global objects
     and then putting all assets into that object.
 
     \begin{minted}{javascript}
     myGlobal = (function() {
         var myInternalData = 10;
-        return {data: 5};
+        return {
+            data: 5,
+            subObject: {
+                cool: 'things',
+            },
+            fn: function() { return myInternalData; },
+        };
     })();
     \end{minted}
 
