@@ -2,6 +2,7 @@
 
 \usepackage{csquotes}
 \usepackage{listings}
+\usepackage{minted}
 
 \MakeOuterQuote{"}
 \setbeamerfont{footnote}{size=\Tiny}
@@ -93,9 +94,7 @@
     \frametitle{Functions: Callback}
     Since JavaScript functions are objects, they can be passed just like other objects.
 
-    \textbf{Example:}
-
-    \begin{lstlisting}
+    \begin{minted}{javascript}
     function doStuff(callback) {
         // do a bunch of processing
         var x = 3;
@@ -106,14 +105,13 @@
     doStuff(function(x) {
         console.log(x * 3);
     });
-    \end{lstlisting}
+    \end{minted}
 
     \textbf{Output:}
-
-    \begin{lstlisting}
+    \begin{minted}{text}
     in doStuff
     9
-    \end{lstlisting}
+    \end{minted}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -124,17 +122,14 @@
     Variables are \textit{hoisted} to the top of the function they are declared in. Thus, the
     following is entirely valid.
 
-    \begin{lstlisting}
+    \begin{minted}{javascript}
     function scopeEx() {
         b = 5;
         console.log(b); // logs 5
         var b = 3
         console.log(b); // logs 3
     }
-    scopeEx();
-
-    console.log(b); // error since b is undefined
-    \end{lstlisting}
+    \end{minted}
 
     This is confusing. It is recommended that you declare all of your variables at the top of your
     functions (one exception to this rule is counter variables).
@@ -150,86 +145,60 @@
     Variables declared within a function \textit{without} the \texttt{var} keyword are also in the
     global scope.
 
-    \begin{lstlisting}
+    \begin{minted}{javascript}
     var a = 2;
     (function() {
         b = 3
-    })(); // this creates and invokes the function immediately
+        var c = 5;
+    })(); // this creates and invokes the function
+          // immediately
 
     console.log(a); // logs 2
     console.log(b); // logs 3
-    \end{lstlisting}
-
-    Because your code could coexist with other people's code, on the same HTML page, it is
-    recommended that you reduce your \textit{global footprint} by creating only a few global objects
-    and then putting everything into that.
+    console.log(c); // error since c is undefined
+                    // in global scope
+    \end{minted}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Functions: Closure}
+    \frametitle{Global Abatement}
+    Because your code could coexist with other people's code, on the same HTML page, it is
+    recommended that you reduce your \textit{global footprint} by creating only a few global objects
+    and then putting all assets into that object.\\
 
-    % TODO: Finish
+    Since you can add properties to objects at will, you can still split your code into multiple
+    files.
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{Arrays}
+    \frametitle{Functions: Closure}
 
-    JavaScript arrays are basically vectors.\\
+    The fact that you can declare a function from within a function allows you to simulate private
+    variables.\\
 
-    \textbf{Example:}
+    \begin{minted}{javascript}
+    var Dog = function(name) {
+        var gender = 'male';
+        this.name = name;
+        this.isBoy = function () {
+            return gender == 'male';
+        };
+    };
 
-    \begin{lstlisting}
-    var arr = [1, 'a', {}, [], true];
-    arr[0] = 'not a number';
-    arr.push('this is basically a vector');
-    console.log(arr);
-    \end{lstlisting}
-
-    \textbf{Output:}
-
-    \begin{lstlisting}
-    [ 'not a number', 'a', {}, [], true, 'this is basically a vector' ]
-    \end{lstlisting}
-
-    \textit{Note that the elements of an array do not have to be the same type.}
-
+    var myDog = new Dog('Sebastian');
+    console.log(myDog.gender);  // logs undefined
+    console.log(myDog.name);    // logs 'Sebastian'
+    console.log(myDog.isBoy()); // logs true
+    \end{minted}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Variables}
-
-    JavaScript is an \textbf{untyped} language. I don't know what that means and I don't
-    think that Brendan did either when he wrote the language.\\
-
-    Variables are declared using the \texttt{var} keyword\footnotemark[1]. \\
-
-    \textbf{Examples:}
-
-    \begin{itemize}
-        \item \texttt{var name;} - creates variable \texttt{name} of type \texttt{undefined}.
-        \item \texttt{var name = `Sumner';} - you can initialize a variable when you declare it.
-    \end{itemize}
-
-    \footnotetext[1]{Sometimes you don't need to use \texttt{var}.}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Literals}
-
-    It is extremely easy to declare object and array literals.
-    % TODO: Frame on Inheritance
-
-    % TODO: EXAMPLE
-
-\end{frame}
-
-\begin{frame}
-    \frametitle{Types\footnotemark[1]}
+    \frametitle{Syntax: Types\footnotemark[1]}
 
     JavaScript has six primitive types:
 
     \begin{itemize}
-        \item Boolean (\texttt{true} or \texttt{false})
+        \item Boolean
         \item Null
         \item Undefined (yes, this is a type)
         \item Number (can be a number between $-(2^{53} - 1)$ and $2^{53} - 1$, \texttt{NaN},
@@ -240,10 +209,105 @@
 
     \footnotetext[1]{Info on this slide from:
     \url{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures}}
-    \footnotetext[2]{Single quotes is recommended by Douglas Crockford because HTML normally uses
+    \footnotetext[2]{Single quotes are recommended by Douglas Crockford because HTML normally uses
         double quotes and to avoid conflicts when manipulating DOM objects, single quotes should be
     used.}
 \end{frame}
+
+\begin{frame}
+    \frametitle{Syntax: Variables}
+
+    JavaScript is an \textbf{untyped} language. I don't know what that means and I don't
+    think that Brendan did either when he wrote the language.\\
+
+    Variables are declared using the \texttt{var} keyword\footnotemark[1]. \\
+
+    \textbf{Examples:}
+
+    \begin{itemize}
+        \item \texttt{var name;} - creates variable \texttt{name} of type \texttt{undefined}.
+        \item \texttt{var name = `Sumner';} - string literal
+        \item \texttt{var age = 18;} - declaring a number literal
+        \item \texttt{var hasFriends = false;} - declaring a boolean
+        \item \texttt{var significantOther = null;}
+    \end{itemize}
+
+    \footnotetext[1]{Sometimes you don't need to use \texttt{var} as I have described above.}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Syntax: Arrays}
+
+    JavaScript arrays are basically vectors.
+
+    \begin{minted}{javascript}
+    var arr = [1, 'a', {}, [], true];
+    arr[0] = 'not a number';
+    arr.push('this is basically a vector');
+    console.log(arr);
+    \end{minted}
+
+    \textbf{Output:}
+    \begin{minted}{text}
+    [ 'not a number', 'a', {}, [], true, 'this is basically a vector' ]
+    \end{minted}
+
+    \textit{Note that the elements of an array do not have to be the same type.}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{Syntax: Objects}
+
+    \begin{minted}{javascript}
+    var myObj = { // this is an object literal
+        a: 3,
+        'b': 'JavaScript',
+        'is-awesome?': true,
+        doSomething: function () {
+            console.log(this.a); // 3
+            console.log(a); // error
+        }, // trailing commas are allowed
+    };
+    myObj.doSomething();
+    console.log(myObj.b, myObj['is-awesome?']);
+    \end{minted}
+
+    \textbf{Output:}
+    \begin{minted}{text}
+    3
+    error: a is undefined
+    JavaScript true
+    \end{minted}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Syntax: Control Statements}
+
+    \begin{minted}{javascript}
+    if (condition) { // if statements are just like
+                     // C++
+    } else if (condition) {
+    } else {
+    }
+
+    // ternary just like C++
+    a = condition ? val_if_true : val_if_false;
+
+    for (initializer; condition; incrementor) {
+        // do stuff
+    }
+
+    for (var prop in obj) { // dont' use for arrays where order matters
+        if (obj.hasOwnProperty(prop)) { // required so you don't iterate over prototype
+            // process the stuff
+        }
+    }
+    \end{minted}
+\end{frame}
+
 
 \begin{frame}
     \frametitle{Pitfalls: Truthy, Falsy and \texttt{==} vs \texttt{===}}

@@ -8,19 +8,19 @@
 - Functions
     - Objects with source code attached
     - Callbacks
-    - Closure
-- Arrays
-    - Objects with array properties attached
 - Scope
+    - Closure
 
 # Brief Syntax Overview (stress that JS looks syntactially similar to the C family of languages)
 - Variables
     - Types
+    - Arrays: Objects with array properties attached
 - Control statements
 
 # Pitfalls
 - Truthy and Falsy
 - `===` vs `==`
+- parseInt must have base 10 specified
 - @SUMNER: Add more
 
 # Additional Resources
@@ -32,4 +32,4 @@
 
 # DOM Manipulation
 - Canvas Manipulation
-
+@SAM: Do this

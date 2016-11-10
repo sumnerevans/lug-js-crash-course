@@ -13,7 +13,7 @@
 \RequirePackage{minted}
 \RequirePackage{xcolor}
 \RequirePackage[overlay,absolute]{textpos}
-\setminted{autogobble,python3,mathescape,linenos,frame=lines,framesep=2mm,bgcolor=lime!20!white}
+\setminted{autogobble,python3,mathescape,linenos,frame=lines,framesep=2mm,fontsize=\footnotesize}
 \usemintedstyle{emacs}
 
 \beamertemplatenavigationsymbolsempty%
