@@ -35,46 +35,134 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{JavaScript is Object Oriented}
+    \frametitle{Objects}
 
     \begin{itemize}[<+->]
         \item Everything is either a primitive or an object.
+        \item Objects in JavaScript are mutable keyed collections.
         \item JavaScript is \textit{pseudoclassical}.
         \item JavaScript uses \textit{prototypes} for inheritance.
-        \item There is no such thing as a \texttt{class} in JavaScript.\footnotemark[1]
+        \item There is no such thing as a \textit{class} in JavaScript.\footnotemark[1]
     \end{itemize}
 
     \footnotetext[1]{ECMAScript 6 added support for classes, but JavaScript classes are just
-    wrappers around the underlying prototype-based structure described later in this presentation.}
+    wrappers around the underlying prototype-based structure.}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Objects}
+    \frametitle{Objects: Inheritance and the Prototype Chain}
 
-    Objects are merely maps.
+    \begin{itemize}[<+->]
+        \item Every JavaScript object is liked to a \textit{prototype}. Objects inherit the
+            properties from their prototypes.
+
+        \item Object literals inherit from \texttt{Object.prototype} which is defined by the
+            JavaScript language.
+
+        \item You can set the prototype of an object to another object by calling
+            \texttt{myObj.prototype = otherObj;}
+
+        \item Since the prototype of an object is itself an object, the prototype will have a
+            prototype.
+
+        \item The prototype relationship is a dynamic relationship. If a property is added to the
+            prototype, it is automatically visible to all objects based on that prototype.
+    \end{itemize}
+
 \end{frame}
-
-\begin{frame}
-    \frametitle{Objects: Inheritance}
-    JavaScript is Pseudoclassical.
-
-    % TODO: Finish
-
-\end{frame}
-
-% TODO: Talk about Prototype chain
 
 \begin{frame}
     \frametitle{Functions}
 
-    Functions are just objects with two special properties: a context (scope) and the function code.
-
-    % TODO: Finish
+    \begin{itemize}[<+->]
+        \item Functions are just objects with two special properties: a context (scope) and the
+            function code.
+        \item Functions can be defined anywhere where an object can be defined and can be stored in
+            variables.
+        \item Functions can access all arguments passed to a function via the \texttt{arguments}
+            variable.
+        \item Functions can also have named parameters.
+        \item Functions always return a value. If no return is explicitly specified, the function
+            will return undefined.
+        \item Functions invoked using the new command construct objects. The default return value is
+            \texttt{this}.
+    \end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
     \frametitle{Functions: Callback}
-    % TODO: Finish
+    Since JavaScript functions are objects, they can be passed just like other objects.
+
+    \textbf{Example:}
+
+    \begin{lstlisting}
+    function doStuff(callback) {
+        // do a bunch of processing
+        var x = 3;
+        console.log('in doStuff');
+        callback(x);
+    }
+
+    doStuff(function(x) {
+        console.log(x * 3);
+    });
+    \end{lstlisting}
+
+    \textbf{Output:}
+
+    \begin{lstlisting}
+    in doStuff
+    9
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Scope I}
+
+    There are two scopes in JavaScript: global and function.\footnotemark[1]\\
+
+    Variables are \textit{hoisted} to the top of the function they are declared in. Thus, the
+    following is entirely valid.
+
+    \begin{lstlisting}
+    function scopeEx() {
+        b = 5;
+        console.log(b); // logs 5
+        var b = 3
+        console.log(b); // logs 3
+    }
+    scopeEx();
+
+    console.log(b); // error since b is undefined
+    \end{lstlisting}
+
+    This is confusing. It is recommended that you declare all of your variables at the top of your
+    functions (one exception to this rule is counter variables).
+
+    \footnotetext[1]{In ES6, variables declared with \texttt{let} are actually block scope.}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Scope II}
+
+    Variables declared outside of a function are automatically in the global scope.\\
+
+    Variables declared within a function \textit{without} the \texttt{var} keyword are also in the
+    global scope.
+
+    \begin{lstlisting}
+    var a = 2;
+    (function() {
+        b = 3
+    })(); // this creates and invokes the function immediately
+
+    console.log(a); // logs 2
+    console.log(b); // logs 3
+    \end{lstlisting}
+
+    Because your code could coexist with other people's code, on the same HTML page, it is
+    recommended that you reduce your \textit{global footprint} by creating only a few global objects
+    and then putting everything into that.
 \end{frame}
 
 \begin{frame}
@@ -105,53 +193,6 @@
 
     \textit{Note that the elements of an array do not have to be the same type.}
 
-\end{frame}
-
-
-\begin{frame}[fragile]
-    \frametitle{Scope I}
-
-    There are two scopes in JavaScript: global and function.\footnotemark[1]\\
-
-    Variables are \textit{hoisted} to the top of the function they are declared in. Thus, the
-    following is entirely valid.
-
-    \begin{lstlisting}
-    function() {
-        b = 5;
-        console.log(b); // logs 5
-        var b = 3
-        console.log(b); // logs 3
-    }
-    \end{lstlisting}
-
-    Thus, it is recommended that you declare all of your variables at the top of your
-    functions (one exception to this rule is counter variables).
-
-    \footnotetext[1]{In ES6, variables declared with \texttt{let} are actually block scope.}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Scope II}
-
-    Variables declared outside of a function are automatically in the global scope.\\
-
-    Variables declared within a function \textit{without} the \texttt{var} keyword are also in the
-    global scope.
-
-    \begin{lstlisting}
-    var a = 2;
-    (function() {
-        b = 3
-    })(); // this creates and invokes the function immediately
-
-    console.log(a); // logs 2
-    console.log(b); // logs 3
-    \end{lstlisting}
-
-    Because your code could coexist with other people's code, on the same HTML page, it is
-    recommended that you reduce your \textit{global footprint} by creating only a few global objects
-    and then putting everything into that.
 \end{frame}
 
 \begin{frame}
@@ -224,7 +265,12 @@
     more than writing a few simple scripts.\\
 
     MDN is the best resource for JavaScript documentation
-    (\url{https://developer.mozilla.org/en-US/}).
+    (\url{https://developer.mozilla.org/en-US/}). \\
+
+    \textbf{JSHint} (\url{http://jshint.com/about/}) is a tool which checks JavaScript syntax and
+    helps prevent bugs in your code. JSHint has plugins for most IDEs and text editors. Here's a SO
+    article on the Vim plugin: \url{http://stackoverflow.com/questions/473478/vim-jslint/5893447}\\
+
 \end{frame}
 
 \begin{frame}
@@ -251,6 +297,13 @@
     \frametitle{Canvas Manipulation}
 
     % TODO: SAM: Fill in details
+\end{frame}
+
+\begin{frame}
+    \frametitle{Sources}
+
+    I relived heavily on \textit{JavaScript the Good Parts} by Douglas Crockford in preparing this
+    presentation. In fact, almost every slide contains some information I got from that book.
 \end{frame}
 
 \end{document}
