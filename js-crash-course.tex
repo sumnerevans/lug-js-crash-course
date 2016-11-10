@@ -24,7 +24,8 @@
         \item JavaScript was originally called Mocha and was renamed to LiveScript before being
             renamed again to JavaScript.
         \item Why \textbf{Java}Script? Because Java happened to be popular then (that was before
-            people realized how awful it is) and JavaScript looks syntactically similar at a glance.
+            people realized how much Java sucks in a browser) and JavaScript looks syntactically
+            similar at a glance.
         \item JavaScript is standardized\footnotemark[2] by Ecma International and there have been a
             number of ECMAScript versions. The latest is ECMAScript 6, but it is not fully supported
             by any browsers, including Firefox which only has partial support.
@@ -315,17 +316,17 @@
     \frametitle{Syntax: Control Statements}
 
     \begin{minted}{javascript}
-    if (condition) { // if statements are just like
-                     // C++
+    // if statement syntax is identical to C++
+    if (condition) {
     } else if (condition) {
     } else {
     }
 
-    // ternary just like C++
-    a = condition ? val_if_true : val_if_false;
+    // ternary syntax is just like C++
+    var a = condition ? val_if_true : val_if_false;
 
     for (initializer; condition; incrementor) {
-        // do stuff
+        // for loop syntax is identical
     }
 
     for (var prop in obj) {
@@ -335,15 +336,18 @@
     \end{minted}
 \end{frame}
 
-
 \begin{frame}
     \frametitle{Pitfalls: Truthy, Falsy and \texttt{==} vs \texttt{===}}
 
-    JavaScript has the notion of being \textit{truthy} and \textit{falsy}.
+    JavaScript has the notion of being \textit{truthy} and \textit{falsy}.\\ 
+ 
+    The following values are always falsy: \texttt{false, 0, "", null, undefined, NaN}. \\ 
+ 
+    Do not expect all falsy values to be equal to each other (\texttt{false == null} is false). \\ 
 
     JavaScript has two equality operators:
     \begin{itemize}
-        \item \texttt{==} compares without checking variable type.
+        \item \texttt{==} compares without checking variable type. This will cast then compare.
         \item \texttt{===} compares and checks variable type.
     \end{itemize}
 \end{frame}
