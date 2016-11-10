@@ -34,50 +34,79 @@
     \uncover<4>{\footnotetext[2]{JavaScript standards aren't actually that standard.}}
 \end{frame}
 
-% TODO: Put the high level stuff here
-
 \begin{frame}
-    \frametitle{Variables}
+    \frametitle{JavaScript is Object Oriented}
 
-    JavaScript is an \textbf{untyped} language. I don't know what that means and I don't
-    think that Brendan did either when he wrote the language.\\
-
-    Variables are declared using the \texttt{var} keyword\footnotemark[1]. \\
-
-    \textbf{Examples:}
-
-    \begin{itemize}
-        \item \texttt{var name;} - creates variable \texttt{name} of type \texttt{undefined}.
-        \item \texttt{var name = `Sumner';} - you can initialize a variable when you declare it.
+    \begin{itemize}[<+->]
+        \item Everything is either a primitive or an object.
+        \item JavaScript is \textit{pseudoclassical}.
+        \item JavaScript uses \textit{prototypes} for inheritance.
+        \item There is no such thing as a \texttt{class} in JavaScript.\footnotemark[1]
     \end{itemize}
 
-    \footnotetext[1]{Sometimes you don't need to use \texttt{var}.}
+    \footnotetext[1]{ECMAScript 6 added support for classes, but JavaScript classes are just
+    wrappers around the underlying prototype-based structure described later in this presentation.}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Types\footnotemark[1]}
+    \frametitle{Objects}
 
-    JavaScript has six primitive types:
-
-    \begin{itemize}
-        \item Boolean (\texttt{true} or \texttt{false})
-        \item Null
-        \item Undefined (yes, this is a type)
-        \item Number (can be a number between $-(2^{53} - 1)$ and $2^{53} - 1$, \texttt{NaN},
-            \texttt{-Infinity}, or \texttt{Infinity}).
-        \item String (single or double quotes declares a string literal\footnotemark[2])
-        \item Symbol (new in ECMAScript 6)
-    \end{itemize}
-
-    ~\\
-    Everything else is an object.
-
-    \footnotetext[1]{Info on this slide from:
-    \url{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures}}
-    \footnotetext[2]{Single quotes is recommended by Douglas Crockford because HTML normally uses
-        double quotes and to avoid conflicts when manipulating DOM objects, single quotes should be
-    used.}
+    Objects are merely maps.
 \end{frame}
+
+\begin{frame}
+    \frametitle{Objects: Inheritance}
+    JavaScript is Pseudoclassical.
+
+    % TODO: Finish
+
+\end{frame}
+
+% TODO: Frame on Prototype chain
+
+\begin{frame}
+    \frametitle{Functions}
+
+    Functions are just objects with two special properties: a context (scope) and the function code.
+
+    % TODO: Finish
+\end{frame}
+
+\begin{frame}
+    \frametitle{Functions: Callback}
+    % TODO: Finish
+\end{frame}
+
+\begin{frame}
+    \frametitle{Functions: Closure}
+
+    % TODO: Finish
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Arrays}
+
+    JavaScript arrays are basically vectors.\\
+
+    \textbf{Example:}
+
+    \begin{lstlisting}
+    var arr = [1, 'a', {}, [], true];
+    arr[0] = 'not a number';
+    arr.push('this is basically a vector');
+    console.log(arr);
+    \end{lstlisting}
+
+    \textbf{Output:}
+
+    \begin{lstlisting}
+    [ 'not a number', 'a', {}, [], true, 'this is basically a vector' ]
+    \end{lstlisting}
+
+    \textit{Note that the elements of an array do not have to be the same type.}
+
+\end{frame}
+
 
 \begin{frame}[fragile]
     \frametitle{Scope I}
@@ -126,61 +155,57 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Objects}
+    \frametitle{Variables}
 
-    JavaScript objects are basically maps.
+    JavaScript is an \textbf{untyped} language. I don't know what that means and I don't
+    think that Brendan did either when he wrote the language.\\
 
-    % Talk about the prototype chain @ a high level
+    Variables are declared using the \texttt{var} keyword\footnotemark[1]. \\
+
+    \textbf{Examples:}
+
+    \begin{itemize}
+        \item \texttt{var name;} - creates variable \texttt{name} of type \texttt{undefined}.
+        \item \texttt{var name = `Sumner';} - you can initialize a variable when you declare it.
+    \end{itemize}
+
+    \footnotetext[1]{Sometimes you don't need to use \texttt{var}.}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Functions}
+    \frametitle{Literals}
 
-    Functions are just objects with two special properties: a context (scope) and the function code.
-\end{frame}
+    It is extremely easy to declare object and array literals.
+    % TODO: Frame on Inheritance
 
-\begin{frame}
-    \frametitle{Functions: Closure}
-
-\end{frame}
-
-\begin{frame}
-    \frametitle{Functions: Callback}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Arrays}
-
-    JavaScript arrays are basically vectors.\\
-
-    \textbf{Example:}
-
-    \begin{lstlisting}
-    var arr = [1, 'a', {}, [], true];
-    arr[0] = 'not a number';
-    arr.push('this is basically a vector');
-    console.log(arr);
-    \end{lstlisting}
-
-    \textbf{Output:}
-
-    \begin{lstlisting}
-    [ 'not a number', 'a', {}, [], true, 'this is basically a vector' ]
-    \end{lstlisting}
-
-    \textit{Note that the elements of an array do not have to be the same type.}
-
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Inheritance}
-    JavaScript is Pseudoclassical.
+    % TODO: EXAMPLE
 
 \end{frame}
 
 \begin{frame}
-    \frametitle{Truthy, Falsy and \texttt{==} vs \texttt{===}}
+    \frametitle{Types\footnotemark[1]}
+
+    JavaScript has six primitive types:
+
+    \begin{itemize}
+        \item Boolean (\texttt{true} or \texttt{false})
+        \item Null
+        \item Undefined (yes, this is a type)
+        \item Number (can be a number between $-(2^{53} - 1)$ and $2^{53} - 1$, \texttt{NaN},
+            \texttt{-Infinity}, or \texttt{Infinity}).
+        \item String (single or double quotes declares a string literal\footnotemark[2])
+        \item Symbol (new in ECMAScript 6)
+    \end{itemize}
+
+    \footnotetext[1]{Info on this slide from:
+    \url{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures}}
+    \footnotetext[2]{Single quotes is recommended by Douglas Crockford because HTML normally uses
+        double quotes and to avoid conflicts when manipulating DOM objects, single quotes should be
+    used.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Pitfalls: Truthy, Falsy and \texttt{==} vs \texttt{===}}
 
     JavaScript has the notion of being \textit{truthy} and \textit{falsy}.
 
@@ -192,32 +217,6 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Pitfalls}
-
-\end{frame}
-
-\begin{frame}
-    \frametitle{DOM Manipulation}
-
-    The \textit{Document Object Model} is an API used by JavaScript to interact with the elements of
-    an HTML document.\footnotemark[1]
-
-    \footnotetext[1]{\url{https://en.wikipedia.org/wiki/Document_Object_Model}}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Libraries}
-
-    There are \textbf{lots} of JavaScript libraries. One of the most widely used is jQuery
-    (\url{http://jquery.com/}). It has good documentation and is really good for DOM
-    manipulation.\\
-
-    I also have a few nice prototype overloads in a repository at
-    \url{https://github.com/sumnerevans/js-utils} (MIT License).
-
-\end{frame}
-
-\begin{frame}
     \frametitle{Additional Resources}
 
     A lot of this presentation was based off of \textit{JavaScript: The Good Parts} by Douglas
@@ -226,6 +225,32 @@
 
     MDN is the best resource for JavaScript documentation
     (\url{https://developer.mozilla.org/en-US/}).
+\end{frame}
+
+\begin{frame}
+    \frametitle{Additional Resources: Libraries}
+
+    There are \textbf{lots} of JavaScript libraries. One of the most widely used is jQuery
+    (\url{http://jquery.com/}). It has good documentation and is really good for DOM
+    manipulation.\\
+
+    % TODO: Sam fill in details on other libraries
+\end{frame}
+
+\begin{frame}
+    \frametitle{DOM Manipulation}
+    The \textit{Document Object Model} is an API used by JavaScript to interact with the elements of
+    an HTML document.\footnotemark[1]
+
+    % TODO: Sam: fill in details using jQuery
+
+    \footnotetext[1]{\url{https://en.wikipedia.org/wiki/Document_Object_Model}}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Canvas Manipulation}
+
+    % TODO: SAM: Fill in details
 \end{frame}
 
 \end{document}
