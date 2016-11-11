@@ -3,7 +3,7 @@ Here are links to some recommended JavaScript resources.
 Suggestions in **bold** are recommended.
 
 ## General JavaScript Resources
-- [**MDN**](https://developer.mozilla.org/en-US/)
+- [**Mozilla Developer Network (MDN)**](https://developer.mozilla.org/en-US/)
 - [**JSHint**](http://jshint.com/about/)
     - [Sumner's `.jshintrc` file](http://www.the-evans.family/sumner/.jshintrc)
 - [***JavaScript: The Good
