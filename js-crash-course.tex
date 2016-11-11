@@ -4,6 +4,8 @@
 \usepackage{listings}
 \usepackage{minted}
 \usepackage{lmodern}
+\usepackage[ampersand]{easylist}
+\usepackage{amssymb}
 
 \setbeamerfont{footnote}{size=\Tiny}
 \lstset{
@@ -176,7 +178,8 @@
             variables.
         \item Functions can access all arguments passed to a function via the \texttt{arguments}
             variable.
-        \item Functions can access the callee of a function (\texttt{callee.func()}) via the \texttt{this} variable.
+        \item Functions can access the callee of a function (\texttt{callee.func()}) via the
+            \texttt{this} variable.
         \item Functions can also have named parameters.
         \item Functions always return a value. If no return is explicitly specified, the function
             will return \texttt{undefined}.
@@ -236,7 +239,7 @@
 \begin{frame}[fragile]
     \frametitle{Scope}
 
-    There are two scopes in JavaScript: global and function.\footnotemark[1]\\
+    There are two scopes in JavaScript: global and function.\footnotemark[1] \\
 
     Variables declared outside of a function are automatically in the global scope.\\
 
@@ -248,13 +251,11 @@
     (function() {
         b = 3
         var c = 5;
-    })(); // this creates and invokes the function
-          // immediately
+    })(); // this creates and invokes the function immediately
 
     console.log(a); // logs 2
     console.log(b); // logs 3
-    console.log(c); // error since c is undefined
-                    // in global scope
+    console.log(c); // error since c is undefined in global scope
     \end{minted}
 \end{frame}
 
@@ -362,35 +363,6 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Additional Resources}
-
-    A lot of this presentation was based off of \textit{JavaScript: The Good Parts} by Douglas
-    Crockford. This is an essential read for anyone interested in learning JavaScript for anything
-    more than writing a few simple scripts.\\
-
-    MDN is the best resource for JavaScript documentation
-    (\url{https://developer.mozilla.org/en-US/}). \\
-
-    \textbf{JSHint} (\url{http://jshint.com/about/}) is a tool which checks JavaScript syntax and
-    helps prevent bugs in your code. JSHint has plugins for most IDEs and text editors. Here's a SO
-    article on the Vim plugin: \url{http://stackoverflow.com/questions/473478/vim-jslint/5893447}\\
-
-\end{frame}
-
-\begin{frame}
-    \frametitle{Additional Resources: Libraries}
-
-    There are \textbf{lots} of JavaScript libraries. One of the most widely used is jQuery
-    (\url{http://jquery.com/}). It has good documentation and is really good for DOM
-    manipulation.\\
-
-    Basically, if you want to do anything in JavaScript, somebody else has probably also wanted to
-    do that and have created a library for it. Google is your friend.
-
-    % TODO: Sam fill in details on other libraries
-\end{frame}
-
 \begin{frame}[fragile]
     \frametitle{DOM Manipulation}
     The \textit{Document Object Model} is an API used by JavaScript to interact with the elements of
@@ -416,17 +388,63 @@
     \footnotetext[1]{\url{https://en.wikipedia.org/wiki/Document_Object_Model}}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Canvas}
+\begin{frame}[fragile]
+    \frametitle{Canvas Manipulation}
 
-    Live Demo from Sam
+    While many JS games (like 2048) use lots of HTML and CSS to drawn the
+    game, with some JS and DOM/JQuery-stuff for the logic. However, you can
+    also draw the game directly using a Canvas. All you need then is a few
+    lines of HTML and the rest can happen in your script. You can even create
+    3D stuff with WebGL or a 3rd party library like Three.js.
+
+    \begin{minted}{javascript}
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.moveTo(0,0);
+    ctx.lineTo(200,100);
+    ctx.stroke();
+     \end{minted}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Libraries}
+
+    {\footnotesize
+    \begin{easylist}[itemize]
+        & DOM Manipulation (HTML and CSS stuff)
+        && \checkmark JQuery (Yep)
+        & HTML5 Canvas (Direct drawing from JS)
+        && \checkmark EaselJS (Nice interation callbacks)
+        && bHive (Never used it, but other people like it)
+        && \checkmark Paper.js (Good vector and shape drawing)
+        && WebGL (3D Graphics if you can OpenGL the things)
+        &&& \checkmark Three.js (3D Graphics if you can't Opengl the things)
+        &&& BabylonJS (Looks pretty I guess)
+        & WebSockets (TCP, multiplayer, experimental, good luck)
+        && Sockets.io (talk to your Node.JS server?)
+        & Audio Stuff
+        && SoundJS (Again, never used)
+        && Google (you are smart, figure it out)
+    \end{easylist}
+    }
+
 \end{frame}
 
 \begin{frame}
-    \frametitle{Sources}
+    \frametitle{Additional Resources}
 
-    I relived heavily on \textit{JavaScript the Good Parts} by Douglas Crockford in preparing this
-    presentation. In fact, almost every slide contains some information I got from that book.
+    A lot of this presentation was based off of \textit{JavaScript: The Good Parts} by Douglas
+    Crockford. This is an essential read for anyone interested in learning JavaScript for anything
+    more than writing a few simple scripts.\\
+
+    MDN is the best resource for JavaScript documentation
+    (\url{https://developer.mozilla.org/en-US/}). \\
+
+    \textbf{JSHint} (\url{http://jshint.com/about/}) is a tool which checks JavaScript syntax and
+    helps prevent bugs in your code. JSHint has plugins for most IDEs and text editors. Here's a SO
+    article on the Vim plugin: \url{http://stackoverflow.com/questions/473478/vim-jslint/5893447}\\
+
 \end{frame}
 
 \end{document}
