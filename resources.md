@@ -19,8 +19,10 @@ Suggestions in **bold** are recommended.
 - WebGL (3D Graphics if you can OpenGL the things)
     - [**Three.js**](https://threejs.org/) (3D Graphics if you can't OpenGL the things)
     - [BabylonJS](http://babylonjs.com/)
-- WebSockets (TCP, multiplayer, experimental, good luck)
-    - [Socket.io](http://socket.io/) - talk to your Node.JS server?
-    - [ASP.NET SignalR](http://signalr.net/) - talk to your ASP.NET Server
-- Audio Stuff
-    - [SoundJS](http://createjs.com/docs/soundjs/modules/SoundJS.html)
+
+## WebSockets (TCP, multiplayer, experimental, good luck)
+- [Socket.io](http://socket.io/) - talk to your Node.JS server?
+- [ASP.NET SignalR](http://signalr.net/) - talk to your ASP.NET Server
+
+## Audio Stuff
+- [SoundJS](http://createjs.com/docs/soundjs/modules/SoundJS.html)
