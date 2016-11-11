@@ -3,6 +3,7 @@
 \usepackage{csquotes}
 \usepackage{listings}
 \usepackage{minted}
+\usepackage{lmodern}
 
 \setbeamerfont{footnote}{size=\Tiny}
 \lstset{
@@ -80,9 +81,9 @@
     \begin{itemize}[<+->]
         \item Every JavaScript object is linked to a \textit{prototype}. If a member is not found in
             an object (i.e. if \texttt{obj.foobar == undefined}) then the prototype is searched. It
-            defines a sort of "default" set of values for the object.
+            defines a sort of ``default'' set of values for the object.
 
-        \item "Empty" objects start with \texttt{Object.prototype} defined as their prototype.
+        \item ``Empty'' objects start with \texttt{Object.prototype} defined as their prototype.
 
         \item You can set the prototype of an object to another object (or to \texttt{undefined}) by
             calling \texttt{myObj.prototype = otherObj;}
