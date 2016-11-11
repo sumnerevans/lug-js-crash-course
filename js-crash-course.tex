@@ -6,7 +6,6 @@
 \usepackage[ampersand]{easylist}
 \usepackage{amssymb}
 
-\MakeOuterQuote{"}
 \setbeamerfont{footnote}{size=\Tiny}
 \lstset{
     basicstyle=\small,
@@ -364,32 +363,6 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Additional Resources}
-
-    A lot of this presentation was based off of \textit{JavaScript: The Good Parts} by Douglas
-    Crockford. This is an essential read for anyone interested in learning JavaScript for anything
-    more than writing a few simple scripts.\\
-
-    MDN is the best resource for JavaScript documentation
-    (\url{https://developer.mozilla.org/en-US/}). \\
-
-    \textbf{JSHint} (\url{http://jshint.com/about/}) is a tool which checks JavaScript syntax and
-    helps prevent bugs in your code. JSHint has plugins for most IDEs and text editors. Here's a SO
-    article on the Vim plugin: \url{http://stackoverflow.com/questions/473478/vim-jslint/5893447}\\
-
-\end{frame}
-
-\begin{frame}
-    \frametitle{Additional Resources: Libraries}
-
-    There are \textbf{lots} of JavaScript libraries. One of the most widely used is jQuery
-    (\url{http://jquery.com/}). It has good documentation and is really good for DOM
-    manipulation.\\
-
-    % TODO: Sam fill in details on other libraries
-\end{frame}
-
 \begin{frame}[fragile]
     \frametitle{DOM Manipulation}
     The \textit{Document Object Model} is an API used by JavaScript to interact with the elements of
@@ -415,10 +388,23 @@
     \footnotetext[1]{\url{https://en.wikipedia.org/wiki/Document_Object_Model}}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
     \frametitle{Canvas Manipulation}
 
-    Live Demo from Sam
+    While many JS games (like 2048) use lots of HTML and CSS to drawn the
+    game, with some JS and DOM/JQuery-stuff for the logic. However, you can
+    also draw the game directly using a Canvas. All you need then is a few
+    lines of HTML and the rest can happen in your script. You can even create
+    3D stuff with WebGL or a 3rd party library like Three.js.
+
+    \begin{minted}{javascript}
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.moveTo(0,0);
+    ctx.lineTo(200,100);
+    ctx.stroke();
+     \end{minted}
+
 \end{frame}
 
 \begin{frame}[fragile]
@@ -446,10 +432,19 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Sources}
+    \frametitle{Additional Resources}
 
-    I relived heavily on \textit{JavaScript the Good Parts} by Douglas Crockford in preparing this
-    presentation. In fact, almost every slide contains some information I got from that book.
+    A lot of this presentation was based off of \textit{JavaScript: The Good Parts} by Douglas
+    Crockford. This is an essential read for anyone interested in learning JavaScript for anything
+    more than writing a few simple scripts.\\
+
+    MDN is the best resource for JavaScript documentation
+    (\url{https://developer.mozilla.org/en-US/}). \\
+
+    \textbf{JSHint} (\url{http://jshint.com/about/}) is a tool which checks JavaScript syntax and
+    helps prevent bugs in your code. JSHint has plugins for most IDEs and text editors. Here's a SO
+    article on the Vim plugin: \url{http://stackoverflow.com/questions/473478/vim-jslint/5893447}\\
+
 \end{frame}
 
 \end{document}
