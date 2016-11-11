@@ -8,7 +8,10 @@ Suggestions in **bold** are recommended.
     - [Sumner's `.jshintrc` file](http://www.the-evans.family/sumner/.jshintrc)
 - [***JavaScript: The Good
   Parts***](https://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742%3FSubscriptionId%3DAKIAILSHYYTFIVPWUY6Q%26tag%3Dduckduckgo-ffsb-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D0596517742)
+
+## Examples
 - [**Sumner's JS-Utils**](https://github.com/sumnerevans/js-utils)
+- [**Sam's jamgame**](https://github.com/doctorocclusion/jamgame)
 
 ## DOM Manipulation (HTML and CSS stuff)
 - [**jQuery**](http://jquery.com/)
