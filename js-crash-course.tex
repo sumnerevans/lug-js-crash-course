@@ -79,14 +79,18 @@
     \frametitle{Objects: Inheritance and the Prototype Chain}
 
     \begin{itemize}[<+->]
-        \item Every JavaScript object is linked to a \textit{prototype}. If a member is not found in an object (i.e. if \texttt{obj.foobar == undefined}) then the prototype is searched. It defines a sort of "default" set of values for the object.
+        \item Every JavaScript object is linked to a \textit{prototype}. If a member is not found in
+            an object (i.e. if \texttt{obj.foobar == undefined}) then the prototype is searched. It
+            defines a sort of "default" set of values for the object.
 
         \item "Empty" objects start with \texttt{Object.prototype} defined as their prototype.
 
-        \item You can set the prototype of an object to another object (or to \texttt{undefined}) by calling
-            \texttt{myObj.prototype = otherObj;}
+        \item You can set the prototype of an object to another object (or to \texttt{undefined}) by
+            calling \texttt{myObj.prototype = otherObj;}
 
-        \item Since the prototype of an object is just another object, it too can have a prototype. Hence the prototype \textit{chain}. When you access a property of an object, the whole prototype chain is searched for it.
+        \item Since the prototype of an object is just another object, it too can have a prototype.
+            Hence the prototype \textit{chain}. When you access a property of an object, the whole
+            prototype chain is searched for it.
 
         \item The prototype relationship is a dynamic relationship. If a property is added to the
             prototype, it is automatically visible to all objects based on that prototype.
@@ -230,30 +234,9 @@
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{Scope I}
+    \frametitle{Scope}
 
     There are two scopes in JavaScript: global and function.\footnotemark[1]\\
-
-    Variables are \textit{hoisted} to the top of the function they are declared in. Thus, the
-    following is entirely valid.
-
-    \begin{minted}{javascript}
-    function scopeEx() {
-        b = 5;
-        console.log(b); // logs 5
-        var b = 3
-        console.log(b); // logs 3
-    }
-    \end{minted}
-
-    This is confusing. It is recommended that you declare all of your variables at the top of your
-    functions (one exception to this rule is counter variables).
-
-    \footnotetext[1]{In ES6, variables declared with \texttt{let} are actually block scope.}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Scope II}
 
     Variables declared outside of a function are automatically in the global scope.\\
 
@@ -343,14 +326,34 @@
     \end{minted}
 \end{frame}
 
+\begin{frame}[fragile]
+    \frametitle{Pitfalls: Variable Hoisting}
+
+    Variables are \textit{hoisted} to the top of the function they are declared in. Thus, the
+    following is entirely valid.
+
+    \begin{minted}{javascript}
+    function scopeEx() {
+        b = 5;
+        console.log(b); // logs 5
+        var b = 3
+        console.log(b); // logs 3
+    }
+    \end{minted}
+
+    This is confusing. Just declare your variables before you use them.
+
+    \footnotetext[1]{In ES6, variables declared with \texttt{let} are actually block scope.}
+\end{frame}
+
 \begin{frame}
     \frametitle{Pitfalls: Truthy, Falsy and \texttt{==} vs \texttt{===}}
 
-    JavaScript has the notion of being \textit{truthy} and \textit{falsy}.\\ 
- 
-    The following values are always falsy: \texttt{false, 0, "", null, undefined, NaN}. \\ 
- 
-    Do not expect all falsy values to be equal to each other (\texttt{false == null} is false). \\ 
+    JavaScript has the notion of being \textit{truthy} and \textit{falsy}.\\
+
+    The following values are always falsy: \texttt{false, 0, "", null, undefined, NaN}. \\
+
+    Do not expect all falsy values to be equal to each other (\texttt{false == null} is false). \\
 
     JavaScript has two equality operators:
     \begin{itemize}
