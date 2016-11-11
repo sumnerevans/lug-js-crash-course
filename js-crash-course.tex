@@ -3,6 +3,8 @@
 \usepackage{csquotes}
 \usepackage{listings}
 \usepackage{minted}
+\usepackage[ampersand]{easylist}
+\usepackage{amssymb}
 
 \MakeOuterQuote{"}
 \setbeamerfont{footnote}{size=\Tiny}
@@ -402,6 +404,30 @@
     \frametitle{Canvas Manipulation}
 
     % TODO: SAM: Fill in details
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Libraries}
+
+    {\footnotesize
+    \begin{easylist}[itemize]
+        & DOM Manipulation (HTML and CSS stuff)
+        && \checkmark JQuery (Yep)
+        & HTML5 Canvas (Direct drawing from JS)
+        && \checkmark EaselJS (Nice interation callbacks)
+        && bHive (Never used it, but other people like it)
+        && \checkmark Paper.js (Good vector and shape drawing)
+        && WebGL (3D Graphics if you can OpenGL the things)
+        &&& \checkmark Three.js (3D Graphics if you can't Opengl the things)
+        &&& BabylonJS (Looks pretty I guess)
+        & WebSockets (TCP, multiplayer, experimental, good luck)
+        && Sockets.io (talk to your Node.JS server?)
+        & Audio Stuff
+        && SoundJS (Again, never used)
+        && Google (you are smart, figure it out)
+    \end{easylist}
+    }
+
 \end{frame}
 
 \begin{frame}
