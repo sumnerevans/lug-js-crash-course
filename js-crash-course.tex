@@ -390,12 +390,27 @@
     % TODO: Sam fill in details on other libraries
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
     \frametitle{DOM Manipulation}
     The \textit{Document Object Model} is an API used by JavaScript to interact with the elements of
     an HTML document.\footnotemark[1]
 
-    % TODO: Sam: fill in details using jQuery
+    jQuery is great for simple DOM manipulation.
+
+    \begin{minted}{html}
+    <div id="cool">Cool</div>
+    <div class="myCls">jQuery Demo</div>
+    \end{minted}
+
+    \begin{minted}{javascript}
+    var coolDiv = document.getElementById('cool'); // pure JS
+    coolDiv.style.background = 'blue';
+
+    var coolDiv = $('#cool');                      // jQuery
+    coolDiv.css('background-color', 'blue');
+    \end{minted}
+
+    jQuery does a ton of other useful things as well, but that's what the docs are for.
 
     \footnotetext[1]{\url{https://en.wikipedia.org/wiki/Document_Object_Model}}
 \end{frame}
@@ -403,7 +418,7 @@
 \begin{frame}
     \frametitle{Canvas Manipulation}
 
-    % TODO: SAM: Fill in details
+    Live Demo from Sam
 \end{frame}
 
 \begin{frame}[fragile]
